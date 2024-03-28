@@ -1,0 +1,5 @@
+<resources>
+    <string-array name="xposedscope" >
+        <item>jp.co.cygames.umamusume</item>
+    </string-array>
+</resources>
