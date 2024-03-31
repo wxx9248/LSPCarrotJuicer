@@ -1,10 +1,12 @@
-#ifndef __LCJ_LSP_HOOK_H
-#define __LCJ_LSP_HOOK_H
+#ifndef LCJ_LSP_HOOK_H
+#define LCJ_LSP_HOOK_H
 
 #include <stdint.h>
 
 typedef int (*HookFunction)(void *function, void *replace, void **backup);
+
 typedef int (*UnhookFunction)(void *function);
+
 typedef void (*NativeOnModuleLoaded)(const char *name, void *handle);
 
 typedef struct {

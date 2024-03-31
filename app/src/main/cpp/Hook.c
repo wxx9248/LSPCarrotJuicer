@@ -8,7 +8,9 @@
 
 // Prototypes
 static int hookedCompressor(const char *src, char *dst, int srcSize, int dstCapacity);
+
 static int hookedDecompressor(const char *src, char *dst, int compressedSize, int dstCapacity);
+
 static void onLibraryLoaded(const char *name, void *handle);
 
 // Global variables
@@ -35,7 +37,7 @@ void onLibraryLoaded(const char *name, void *handle) {
         // Not what we want
         return;
     }
-    LOG_I(LOG_TAG, "Got handle for %s at %p", TARGET_LIBRARY, handle);
+    LOG_D(LOG_TAG, "Got handle for %s at %p", TARGET_LIBRARY, handle);
     LOG_D(LOG_TAG, "Library path: %s", name);
 
     Compressor compressor = (Compressor) dlsym(handle, TARGET_SYMBOL_COMPRESSOR);
@@ -43,21 +45,24 @@ void onLibraryLoaded(const char *name, void *handle) {
         LOG_E(LOG_TAG, "Cannot get handle for %s", TARGET_SYMBOL_COMPRESSOR);
         return;
     }
-    LOG_I(LOG_TAG, "Got handle for %s at %p", TARGET_SYMBOL_COMPRESSOR, compressor);
+    LOG_D(LOG_TAG, "Got handle for %s at %p", TARGET_SYMBOL_COMPRESSOR, compressor);
 
     Decompressor decompressor = (Decompressor) dlsym(handle, TARGET_SYMBOL_DECOMPRESSOR);
     if (!decompressor) {
         LOG_E(LOG_TAG, "Cannot get handle for %s", TARGET_SYMBOL_DECOMPRESSOR);
         return;
     }
-    LOG_I(LOG_TAG, "Got handle for %s at %p", TARGET_SYMBOL_DECOMPRESSOR, decompressor);
+    LOG_D(LOG_TAG, "Got handle for %s at %p", TARGET_SYMBOL_DECOMPRESSOR, decompressor);
 
     hook((void *) compressor, (void *) hookedCompressor, (void **) &originalCompressor);
-    LOG_I(LOG_TAG, "Compressor hooked to %p (original at %p)", hookedCompressor, originalCompressor);
+    LOG_D(LOG_TAG, "Compressor hooked to %p (original at %p)", hookedCompressor,
+          originalCompressor);
 
     hook((void *) decompressor, (void *) hookedDecompressor, (void **) &originalDecompressor);
-    LOG_I(LOG_TAG, "Decompressor hooked to %p (original at %p)", hookedDecompressor, originalDecompressor);
+    LOG_D(LOG_TAG, "Decompressor hooked to %p (original at %p)", hookedDecompressor,
+          originalDecompressor);
 
+    LOG_I(LOG_TAG, "Native hook completed");
     isHooked = true;
 #undef LOG_TAG
 }

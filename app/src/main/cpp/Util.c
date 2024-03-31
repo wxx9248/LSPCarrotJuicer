@@ -12,3 +12,17 @@ int endsWith(const char *string, const char *suffix) {
     // Compare the end of the string with the suffix
     return strcmp(string + stringLength - suffixLength, suffix) == 0;
 }
+
+size_t countDigits(size_t n) {
+    size_t count = 0;
+
+    if (n == 0)
+        return 1;
+
+    while (n) {
+        n /= 10;
+        ++count;
+    }
+
+    return count;
+}

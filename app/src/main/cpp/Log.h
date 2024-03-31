@@ -1,5 +1,5 @@
-#ifndef __LCJ_LOG_H
-#define __LCJ_LOG_H
+#ifndef LCJ_LOG_H
+#define LCJ_LOG_H
 
 #include <android/log.h>
 

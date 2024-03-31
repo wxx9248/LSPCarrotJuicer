@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">LSPCarrotJuicer</string>
+    <string name="settings_dialog_input_host_prompt">IPv4 Address</string>
+    <string name="settings_dialog_input_port_prompt">Port</string>
 </resources>
