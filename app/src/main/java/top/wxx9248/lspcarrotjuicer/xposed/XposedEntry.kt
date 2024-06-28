@@ -8,24 +8,28 @@ import de.robv.android.xposed.XC_MethodHook
 import de.robv.android.xposed.XposedHelpers
 import de.robv.android.xposed.callbacks.XC_LoadPackage
 
-class Hook : IXposedHookLoadPackage {
+
+class XposedEntry : IXposedHookLoadPackage {
     override fun handleLoadPackage(lpParam: XC_LoadPackage.LoadPackageParam) {
-        val logTag = "LCJ/Hook/handleLoadPackage"
+        val logTag = "LCJ/XposedEntry/handleLoadPackage"
         if (lpParam.packageName != TARGET_PACKAGE_NAME) {
             return
         }
         Log.i(logTag, "Matched target package")
 
-        hook(lpParam)
+        val moduleClassLoader = javaClass.classLoader!!
+        val targetClassLoader = lpParam.classLoader
+
+        hook(targetClassLoader)
         hookNative()
     }
 
-    private fun hook(lpParam: XC_LoadPackage.LoadPackageParam) {
-        val logTag = "LCJ/Hook/hook"
+    private fun hook(targetClassLoader: ClassLoader) {
+        val logTag = "LCJ/XposedEntry/hook"
 
         XposedHelpers.findAndHookMethod(
             TARGET_ENTRY_ACTIVITY_CLASS_NAME,
-            lpParam.classLoader,
+            targetClassLoader,
             "onCreate",
             Bundle::class.java,
             object : XC_MethodHook() {
@@ -41,7 +45,7 @@ class Hook : IXposedHookLoadPackage {
     }
 
     private fun hookNative() {
-        val logTag = "LCJ/Hook/hookNative"
+        val logTag = "LCJ/XposedEntry/hookNative"
 
         try {
             System.loadLibrary(NATIVE_LIBRARY_NAME)

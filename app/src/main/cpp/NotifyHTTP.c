@@ -26,6 +26,7 @@ static bool isConfigLoaded;
 
 int notifyHTTP(const uint8_t *message, size_t messageSize, bool isResponse) {
 #define LOG_TAG "LCJ/Native/notifyHTTP"
+#define RESPONSE_BUFFER_SIZE 1024
     if (!isConfigLoaded) {
         int result;
         if ((result = readConfig(host, sizeof host, &port)) < 0) {
@@ -81,6 +82,7 @@ int notifyHTTP(const uint8_t *message, size_t messageSize, bool isResponse) {
 
     close(socketFD);
     return 0;
+#undef RESPONSE_BUFFER_SIZE
 #undef LOG_TAG
 }
 
@@ -161,5 +163,6 @@ size_t requestBuilder(const char *host, const uint8_t *message, size_t messageSi
 
     *requestBufferOutput = requestBuffer;
     return requestSize;
+#undef HTTP_HEADER_FORMAT_STRING
 #undef LOG_TAG
 }
