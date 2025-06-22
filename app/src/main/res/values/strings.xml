@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">LSPCarrotJuicer</string>
+    <string name="app_description">Packet inspector for ウマ娘 プリティーダービー</string>
     <string name="app_icon_description">Icon</string>
     <string name="tab_home">Home</string>
     <string name="tab_settings">Settings</string>

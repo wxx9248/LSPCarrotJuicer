@@ -2,5 +2,7 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="/data/wxx9248/Development/LSPCarrotJuicer" vcs="Git" />
+    <mapping directory="/data/wxx9248/Development/LSPCarrotJuicer/libs/libxposed/api/upstream" vcs="Git" />
+    <mapping directory="/data/wxx9248/Development/LSPCarrotJuicer/libs/libxposed/service/upstream" vcs="Git" />
   </component>
 </project>

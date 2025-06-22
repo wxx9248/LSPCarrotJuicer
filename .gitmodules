@@ -1,0 +1,12 @@
+[submodule "lib/api/upstream"]
+	path = lib/api/upstream
+	url = https://github.com/libxposed/api
+[submodule "lib/service/upstream"]
+	path = lib/service/upstream
+	url = https://github.com/libxposed/service
+[submodule "lib/libxposed/api/upstream"]
+	path = libs/libxposed/api/upstream
+	url = https://github.com/libxposed/api
+[submodule "lib/libxposed/service/upstream"]
+	path = libs/libxposed/service/upstream
+	url = https://github.com/libxposed/service

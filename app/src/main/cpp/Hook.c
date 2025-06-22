@@ -48,6 +48,12 @@ void onLibraryLoaded(const char *name, void *handle) {
     LOG_D(LOG_TAG, "Got handle for %s at %p", TARGET_LIBRARY, handle);
     LOG_D(LOG_TAG, "Library path: %s", name);
 
+    // Initialize IPC communication
+    if (!initializeIPC()) {
+        LOG_E(LOG_TAG, "Failed to initialize IPC - continuing without packet forwarding");
+        // Continue with hooking even if IPC fails
+    }
+
     Compressor compressor = (Compressor) dlsym(handle, TARGET_SYMBOL_COMPRESSOR);
     if (!compressor) {
         LOG_E(LOG_TAG, "Cannot get handle for %s", TARGET_SYMBOL_COMPRESSOR);

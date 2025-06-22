@@ -11,6 +11,10 @@
           <set>
             <option value="/data/wxx9248/Development/LSPCarrotJuicer" />
             <option value="/data/wxx9248/Development/LSPCarrotJuicer/app" />
+            <option value="/data/wxx9248/Development/LSPCarrotJuicer/libs" />
+            <option value="/data/wxx9248/Development/LSPCarrotJuicer/libs/libxposed" />
+            <option value="/data/wxx9248/Development/LSPCarrotJuicer/libs/libxposed/api" />
+            <option value="/data/wxx9248/Development/LSPCarrotJuicer/libs/libxposed/service" />
           </set>
         </option>
       </GradleProjectSettings>
